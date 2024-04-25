@@ -25,3 +25,14 @@ rfe:
 	 --max-depth 7 \
 	 --max-bins 128 \
 	 --min-instances-per-node 5
+
+
+sfs:
+	$(spark-submit) \
+	 --driver-memory 2g \
+	 --conf "spark.pyspark.python=$(python)" \
+	 --conf "spark.pyspark.driver.python=$(python)" \
+	parallel-sequential-feature-selecton.py \
+	 --input data/potential.parquet \
+	 --num-features 50 \
+	 --subsample 200_000
